@@ -39,7 +39,11 @@
 bool GtkAvailable;
 #endif
 
+#ifdef __ANDROID__
+int main_mobile(int argc, char *argv[])
+#else
 int main(int argc, char *argv[])
+#endif
 {
 	// Set LC_NUMERIC environment variable in case some library decides to
 	// clear the setlocale call at least this will be correct.

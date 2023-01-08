@@ -48,9 +48,11 @@ bool queryiwad = true;
 static bool showpreviewgames = false;
 
 int I_PickIWad(WadStuff *wads, int numwads, bool showwin, int defaultiwad);
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__ANDROID__)
 #include "wl_iwad_picker.cpp"
 #endif
+
+extern char *argsExtraPath;
 
 namespace IWad {
 
@@ -627,6 +629,12 @@ void SelectGame(TArray<FString> &wadfiles, const char* iwad, const char* datawad
 	}
 	dataPaths = config.GetSetting("BaseDataPaths")->GetString();
 
+    if(argsExtraPath)
+    {
+        dataPaths += ";";
+        dataPaths += argsExtraPath;
+    }
+
 	TArray<WadStuff> basefiles;
 	long split = 0;
 	do
@@ -783,6 +791,7 @@ void SelectGame(TArray<FString> &wadfiles, const char* iwad, const char* datawad
 	}
 	if(pick < 0)
 	{
+#ifndef __ANDROID__
 		if(basefiles.Size() > 1)
 		{
 			pick = I_PickIWad(&basefiles[0], basefiles.Size(), showPicker, defaultIWad);
@@ -791,6 +800,7 @@ void SelectGame(TArray<FString> &wadfiles, const char* iwad, const char* datawad
 			config.GetSetting("ShowIWadPicker")->SetValue(queryiwad);
 		}
 		else
+#endif
 			pick = 0;
 	}
 	if(pick < 0)

@@ -278,6 +278,9 @@ void SetupPaths(int argc, const char * const *argv)
 		I_Error("Could not create your preferences files.\n");
 	}
 	configDir = osxDir;
+#elif defined(__ANDROID__)
+	char *user_files = getenv("USER_FILES");
+	configDir.Format("%s/ecwolf/", user_files);
 #else
 	char *home = getenv("HOME");
 	char *xdg_config = getenv("XDG_CONFIG_HOME");
@@ -303,6 +306,8 @@ void SetupPaths(int argc, const char * const *argv)
 	osxDir = OSX_FindFolder(DIR_Documents);
 	if(!osxDir.IsEmpty())
 		documentsDir = osxDir + "/" GAME_DIR;
+#elif defined(__ANDROID__)
+	documentsDir.Format("%s/ecwolf/", user_files);
 #else
 	char *xdg_data = getenv("XDG_DATA_HOME");
 	if(xdg_data == NULL || *xdg_data == '\0')

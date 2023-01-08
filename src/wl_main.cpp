@@ -901,6 +901,10 @@ int CheckRatio (int width, int height, int *trueratio)
 
 #define IFARG(str) if(!strcmp(arg, (str)))
 
+#ifdef __ANDROID__
+char *argsExtraPath = 0;
+bool maintainAspect = false;
+#endif
 static const char* CheckParameters(int argc, char *argv[], TArray<FString> &files)
 {
 	const char* extension = NULL;
@@ -1121,6 +1125,17 @@ static const char* CheckParameters(int argc, char *argv[], TArray<FString> &file
 		else IFARG("--foreignsave")
 		{
 			GameSave::param_foreginsave = true;
+		}
+		else IFARG("--datapath")
+		{
+			if(++i < argc)
+			{
+				argsExtraPath = argv[i];
+			}
+		}
+		else  IFARG("--maintainaspect")
+		{
+			maintainAspect = true;
 		}
 		else
 			files.Push(argv[i]);
