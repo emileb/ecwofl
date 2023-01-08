@@ -214,7 +214,7 @@ extern const int oplChip = 0;
 
 #if !SDL_MIXER_VERSION_ATLEAST(2,6,0)
 #warning SDL_mixer version lacks music position support
-static int Mix_SetMusicPosition(double) { return -1; }
+extern int Mix_SetMusicPosition(double) { return -1; }
 static double Mix_GetMusicPosition(Mix_Music*) { return 0.0; }
 #endif
 
