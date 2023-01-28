@@ -1276,8 +1276,10 @@ static void CallTerminateFunctions()
 	ShutdownId();
 	WriteConfig();
 
+#ifndef __ANDROID__ // Something in here crashes and lockups up shutdown with mods. Don;t bother and the process is killed anyway
 	while(NumTerms > 0)
 		TermFuncs[--NumTerms]();
+#endif
 
 	SDL_Quit();
 }
@@ -1337,6 +1339,9 @@ int WL_Main (int argc, char *argv[])
 	catch(CNoRunExit) // Normal exit from deep code
 	{
 		CallTerminateFunctions();
+#ifdef __ANDROID__
+		exit(0);
+#endif
 		return 0;
 	}
 	catch(CDoomError &error)
@@ -1352,8 +1357,13 @@ int WL_Main (int argc, char *argv[])
 #ifdef _WIN32
 		I_AcknowledgeError();
 #endif
-
+#ifdef __ANDROID__
+		exit(0);
+#endif
 		return 1;
 	}
+#ifdef __ANDROID__
+	exit(0);
+#endif
 	return 1;
 }
