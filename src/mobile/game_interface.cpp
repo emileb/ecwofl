@@ -151,25 +151,25 @@ void PortableAction(int state, int action)
                     alwaysrun = !alwaysrun;
                 break;
             case PORT_ACT_WEAP1:
-                key = bt_slot0;
-                break;
-            case PORT_ACT_WEAP2:
                 key = bt_slot1;
                 break;
-            case PORT_ACT_WEAP3:
+            case PORT_ACT_WEAP2:
                 key = bt_slot2;
                 break;
-            case PORT_ACT_WEAP4:
+            case PORT_ACT_WEAP3:
                 key = bt_slot3;
                 break;
-            case PORT_ACT_WEAP5:
+            case PORT_ACT_WEAP4:
                 key = bt_slot4;
                 break;
-            case PORT_ACT_WEAP6:
+            case PORT_ACT_WEAP5:
                 key = bt_slot5;
                 break;
-            case PORT_ACT_WEAP7:
+            case PORT_ACT_WEAP6:
                 key = bt_slot6;
+                break;
+            case PORT_ACT_WEAP7:
+                key = bt_slot7;
                 break;
         }
 
