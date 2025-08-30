@@ -289,6 +289,11 @@ void PortableCommand(const char * cmd)
 
 }
 
+bool PortableSetAlwaysRun(bool run)
+{
+    return false;
+}
+
 }
 
 #define BASEMOVE                35
