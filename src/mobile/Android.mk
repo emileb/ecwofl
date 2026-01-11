@@ -170,7 +170,7 @@ LOCAL_SRC_FILES = $(SRC)
 
 LOCAL_LDLIBS := -lEGL -ldl -llog -lz -lm -lc
 LOCAL_STATIC_LIBRARIES := logwritter gdtoa zlib lzma jpeg6b bzip2
-LOCAL_SHARED_LIBRARIES := touchcontrols  SDL2 SDL2_net SDL2_mixer core_shared saffal
+LOCAL_SHARED_LIBRARIES := touchcontrols  SDL2 SDL2_net SDL2_mixer saffal
 
 LOCAL_STATIC_LIBRARIES +=
 
